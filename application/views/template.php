@@ -38,7 +38,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>A</b>LT</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>DASHBOARD</b></span>
+                    <span class="logo-lg"><b> <?php echo $this->session->userdata('username'); ?></b></span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top" role="navigation">
@@ -137,7 +137,29 @@
                             </a>
                         </li>
                         <?php
-                        $menu = $this->db->get_where('menu', array('is_parent' => 0,'is_active'=>1));
+						$level = $this->session->userdata('level');
+						if($level == 'Super Admin'){
+						$menu = $this->db->get_where('menu', array('is_parent' => 0));
+                        foreach ($menu->result() as $m) {
+                            // chek ada sub menu
+                            $submenu = $this->db->get_where('menu',array('is_parent'=>$m->id));
+                            if($submenu->num_rows()>0){
+                                // tampilkan submenu
+                                echo "<li class='treeview'>
+                                    ".anchor('#',  "<i class='$m->icon'></i>".strtoupper($m->name).' <i class="fa fa-angle-left pull-right"></i>')."
+                                        <ul class='treeview-menu'>";
+                                foreach ($submenu->result() as $s){
+                                     echo "<li>" . anchor($s->link, "<i class='$s->icon'></i> <span>" . strtoupper($s->name)) . "</span></li>";
+                                }
+                                   echo"</ul>
+                                    </li>";
+                            }else{
+                                echo "<li>" . anchor($m->link, "<i class='$m->icon'></i> <span>" . strtoupper($m->name)) . "</span></li>";
+                            }
+                            
+							}
+						}elseif($level == 'admin'){
+						$menu = $this->db->get_where('menu', array('is_parent' => 0,'is_active'=>1));
                         foreach ($menu->result() as $m) {
                             // chek ada sub menu
                             $submenu = $this->db->get_where('menu',array('is_parent'=>$m->id,'is_active'=>1));
@@ -155,7 +177,28 @@
                                 echo "<li>" . anchor($m->link, "<i class='$m->icon'></i> <span>" . strtoupper($m->name)) . "</span></li>";
                             }
                             
-                        }
+							}
+						}else{
+							$menu = $this->db->get_where('menu', array('is_parent' => 0,'is_active'=>1,'m_usergroup_id'=>2));
+							foreach ($menu->result() as $m) {
+								// chek ada sub menu
+								$submenu = $this->db->get_where('menu',array('is_parent'=>$m->id,'is_active'=>1));
+								if($submenu->num_rows()>0){
+									// tampilkan submenu
+									echo "<li class='treeview'>
+										".anchor('#',  "<i class='$m->icon'></i>".strtoupper($m->name).' <i class="fa fa-angle-left pull-right"></i>')."
+											<ul class='treeview-menu'>";
+									foreach ($submenu->result() as $s){
+										 echo "<li>" . anchor($s->link, "<i class='$s->icon'></i> <span>" . strtoupper($s->name)) . "</span></li>";
+									}
+									   echo"</ul>
+										</li>";
+								}else{
+									echo "<li>" . anchor($m->link, "<i class='$m->icon'></i> <span>" . strtoupper($m->name)) . "</span></li>";
+								}
+								
+							}
+						}
                         ?>
 
                     </ul>
