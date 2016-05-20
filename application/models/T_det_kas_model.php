@@ -12,6 +12,7 @@ class T_det_kas_model extends CI_Model
 	
 	public $main_sql = "SELECT
 			id_kas,
+			no_kwitansi,
 			t_det_kas.id_kegiatan,
 			m_kegiatan.nama_kegiatan,
 			bulan,
@@ -111,6 +112,7 @@ class T_det_kas_model extends CI_Model
 		$modal = $row->saldo_akhir;
 		$nbrows = $rs->num_rows();
 		$data = array(
+			"no_kwitansi"=>$no_kwitansi,
 			"id_kegiatan"=>$id_kegiatan,
 			"bulan"=>$bulan,
 			"tahun"=>$tahun,
@@ -148,7 +150,7 @@ class T_det_kas_model extends CI_Model
 			}
 		}
 		$data['created_date']= date("Y-m-d H:i:s");
-		$data['created_by']= 'session nama';
+		$data['created_by']= $this->session->userdata('username');
         $this->db->insert($this->table, $data);
     }
 
@@ -204,7 +206,7 @@ class T_det_kas_model extends CI_Model
 			}
 		}
 		$data['updated_date']= date("Y-m-d H:i:s");
-		$data['updated_by']= 'session nama';
+		$data['updated_by']= $this->session->userdata('username');
 		
 		$this->db->set('revised', '(revised+1)', FALSE);
 		$this->db->where($this->id, $id);
@@ -219,6 +221,27 @@ class T_det_kas_model extends CI_Model
 				->where_in($this->id, $id)
 				->update($this->table);
     }
+	function getNomorKwitansi($formValues){
+		extract($formValues);
+		$year = $tahun;
+		$month = $bulan;
+		$sqlSelectNomor = "SELECT no_kwitansi FROM t_det_kas
+		WHERE tahun = '".$year."' and
+		bulan = '".$month."'
+		ORDER BY id_kas DESC LIMIT 1";
+		$querySelectNomor = $this->db->query($sqlSelectNomor);
+		if($querySelectNomor->num_rows()){
+			$lastNomorMati = $querySelectNomor->row()->no_kwitansi;
+			$expLastNomorMati = explode('/',$lastNomorMati);
+			$lastNomorMati = $expLastNomorMati[0];
+			$nomorUrutMati = $lastNomorMati + 1;
+		}else{
+			$nomorUrutMati = 1;
+		}
+		/* format nomor = "nomorUrut/SM/bulanRomawi/tahun" */
+		$nomorMati = "00".$nomorUrutMati."/".$month."/".$year;
+		return $nomorMati;
+	}
 
 }
 

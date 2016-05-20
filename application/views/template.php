@@ -12,6 +12,8 @@
         <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">-->
         <link rel="stylesheet" href="<?php echo base_url() ?>template/font-awesome-4.4.0/css/font-awesome.min.css">
         <!-- Ionicons -->
+		 <!-- daterange picker -->
+		<link rel="stylesheet" href="<?php echo base_url() ?>template/plugins/daterangepicker/daterangepicker-bs3.css">
         <!--<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">-->
         <link rel="stylesheet" href="<?php echo base_url() ?>template/ionicons-2.0.1/css/ionicons.min.css">
         <!-- DataTables -->
@@ -244,6 +246,9 @@
         <script src="<?php echo base_url() ?>template/plugins/datatables/dataTables.bootstrap.min.js"></script>
         <!-- SlimScroll -->
         <script src="<?php echo base_url() ?>template/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+		<!-- date-range-picker -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+		<script src="<?php echo base_url() ?>template/plugins/daterangepicker/daterangepicker.js"></script>
         <!-- FastClick -->
         <script src="<?php echo base_url() ?>template/plugins/fastclick/fastclick.min.js"></script>
         <!-- AdminLTE App -->

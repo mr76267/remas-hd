@@ -71,7 +71,14 @@ class T_det_kas extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
+			$data2 = array(
+			'bulan' => substr($this->input->post('tanggal',TRUE),5,2),
+			'tahun' => substr($this->input->post('tanggal',TRUE),0,4),
+			);
+			$no_kwitansi = $this->T_det_kas_model->getNomorKwitansi($data2);
+						
             $data = array(
+		'no_kwitansi' => $no_kwitansi,	
 		'id_kegiatan' => $this->input->post('id_kegiatan',TRUE),
 		'bulan' => substr($this->input->post('tanggal',TRUE),5,2),
 		'tahun' => substr($this->input->post('tanggal',TRUE),0,4),
@@ -97,6 +104,7 @@ class T_det_kas extends CI_Controller
                 'action' => site_url('t_det_kas/update_action'),
 		'id_kas' => set_value('id_kas', $row->id_kas),
 		'id_kegiatan' => set_value('id_kegiatan', $row->id_kegiatan),
+		'no_kwitansi' => set_value('no_kwitansi', $row->no_kwitansi),
 		'pengeluaran' => set_value('pengeluaran', $row->pengeluaran),
 		'pemasukan' => set_value('pemasukan', $row->pemasukan),
 		'saldo' => set_value('saldo', $row->saldo_akhir),

@@ -29,7 +29,7 @@ class Auth extends CI_Controller {
 			$hasil = $this->model_user->cek_user($data);
 			if ($hasil->num_rows() == 1) {
 				$sess = $hasil->row();
-				if($sess->active <> 0){
+				if($sess->active <> 1){
 					echo "<script>alert('User Anda Belom di Aktifkan, Silahkan Cek Email Anda');history.go(-1);</script>";
 				}else{
 					$sess_data['logged_in'] = TRUE;
