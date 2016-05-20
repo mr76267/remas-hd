@@ -36,7 +36,7 @@
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Awali dengan Basmalah</p>
-        <form action= <?php echo base_url()."index.php/auth/cek_login"; ?> method="post">
+        <form action= <?php echo base_url()."index.php/menu_login/cek_login"; ?> method="post">
           <div class="form-group has-feedback">
             <input type="text" name="username" class="form-control" placeholder="Username">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -53,7 +53,7 @@
           </div>
         </form>
         <a href="#">Lupa Password?</a><br>
-        <a href="auth/register" class="text-center">Buat ID </a>
+        <a href="menu_login/register" class="text-center">Buat ID </a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

@@ -32,7 +32,7 @@
 
       <div class="register-box-body">
         <p class="login-box-msg">Pendaftaran Anggota Remas HD</p>
-        <form action=<?php echo base_url()."index.php/auth/daftar"; ?> method="post">
+        <form action=<?php echo base_url()."index.php/menu_login/daftar"; ?> method="post">
           <div class="form-group has-feedback">
             <input type="text" class="form-control" name="username" maxlength="10" title="Wajib Di isi ! Max 10 character" required placeholder="Username">
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -63,7 +63,7 @@
             </div><!-- /.col -->
           </div>
         </form>
-        <a href="<?php echo base_url() ?>index.php/auth" class="text-center">Sudah Punya Akun</a>
+        <a href="<?php echo base_url() ?>index.php/menu_login" class="text-center">Sudah Punya Akun</a>
       </div><!-- /.form-box -->
     </div><!-- /.register-box -->
 
