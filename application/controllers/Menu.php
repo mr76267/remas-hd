@@ -13,7 +13,7 @@ class Menu extends CI_Controller
         $this->load->model('Menu_model');
         $this->load->library('form_validation');
 		if ($this->session->userdata('logged_in') <> 1) {
-			redirect('auth');
+			redirect('menu_login');
 		}
     }
 
