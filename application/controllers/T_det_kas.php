@@ -17,11 +17,16 @@ class T_det_kas extends CI_Controller
 
     public function index()
     {
+		$saldo_akhir = 0;
         $t_det_kas = $this->T_det_kas_model->get_all();
-		$saldo_akhir = $this->T_det_kas_model->get_last_id();
+		$total = $this->T_det_kas_model->get_last_id()->saldo_akhir;
+		$saldo_ay = $this->T_det_kas_model->get_SAY()->saldo_ay;
+		
+		$saldo_akhir = $total - $saldo_ay;
         $data = array(
             't_det_kas_data' => $t_det_kas,
-			'saldo_akhir' => $saldo_akhir
+			'saldo_akhir' => $saldo_akhir,
+			'saldo_ay' => $saldo_ay
         );
 
         $this->template->load('template','t_det_kas_list', $data);

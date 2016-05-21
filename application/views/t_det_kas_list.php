@@ -87,7 +87,7 @@
         </script>
                     </div><!-- /.box-body -->
 					<div class="box-body" style="font-size:24px;">
-					<marquee><?php echo "Perolehan Terakhir Kas Remaja Masjid Tanggal"." ".date('Y-m-d H:i:s')." "." adalah ".$saldo_akhir ; ?></marquee>
+					<marquee><?php echo "Perolehan Terakhir Kas Remaja Masjid Tanggal"." ".date('Y-m-d H:i:s')." "." adalah Rp".$saldo_akhir. " "."Untuk Sumbangan Anak Yatim Rp".$saldo_ay ; ?></marquee>
 					</div>
               </div><!-- /.box -->
             </div><!-- /.col -->

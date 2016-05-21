@@ -45,8 +45,7 @@ class T_det_kas_model extends CI_Model
 			$sql .= " And t_det_kas.aktif = 'y'";
 		}
 		
-		$sql .= " ORDER BY
-				id_kas ASC" ;
+		$sql .= " ORDER BY id_kas ASC" ;
 		$result = $this->db->query($sql);
 		return $result->result();
         /* $this->db->order_by($this->id, $this->order);
@@ -59,10 +58,19 @@ class T_det_kas_model extends CI_Model
 		$sql .= " ORDER BY
 				id_kas DESC Limit 1" ;
 		$result = $this->db->query($sql);
-		return $result->row()->saldo_akhir;
+		return $result->row();
         /* $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result(); */
     }
+	function get_SAY(){
+		$sql = "Select sum(pemasukan) as saldo_ay
+				from t_det_kas
+				where id_kas is not null
+				and aktif = 'y'
+				and id_kegiatan = 7";
+		$result = $this->db->query($sql);
+		return $result->row();
+	}
 
     // get data by id
     function get_by_id($id)
