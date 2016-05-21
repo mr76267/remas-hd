@@ -41,10 +41,25 @@ class T_det_kas_model extends CI_Model
     function get_all()
     {
 		$sql = $this->main_sql;
+		if($this->session->userdata('level') <> 'Super Admin'){
+			$sql .= " And t_det_kas.aktif = 'y'";
+		}
+		
 		$sql .= " ORDER BY
 				id_kas ASC" ;
 		$result = $this->db->query($sql);
 		return $result->result();
+        /* $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result(); */
+    }
+	function get_last_id()
+    {
+		$sql = $this->main_sql;
+		$sql .= " And t_det_kas.aktif = 'y'";
+		$sql .= " ORDER BY
+				id_kas DESC Limit 1" ;
+		$result = $this->db->query($sql);
+		return $result->row()->saldo_akhir;
         /* $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result(); */
     }

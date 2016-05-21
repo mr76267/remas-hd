@@ -5,8 +5,9 @@
             <div class='col-xs-12'>
               <div class='box'>
                 <div class='box-header'>
-                <h3 class='box-title'>T_det_kas Read</h3>
+                <h3 class='box-title'><b>Detail Kegiatan</b></h3>
         <table class="table table-bordered">
+	    <tr><td>No Kwitansi</td><td><?php echo $no_kwitansi; ?></td></tr>
 	    <tr><td>Kegiatan</td><td><?php echo $nama_kegiatan; ?></td></tr>
 		<tr><td>Tanggal</td><td><?php echo $tanggal; ?></td></tr>
 		<tr><td>Keterangan</td><td><?php echo $keterangan; ?></td></tr>

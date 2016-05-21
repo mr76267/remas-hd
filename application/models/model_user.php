@@ -8,6 +8,7 @@
 					users.id,
 					username,
 					password,
+					first_name,
 					email,
 					active,
 					groups.name as level

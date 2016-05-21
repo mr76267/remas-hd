@@ -40,7 +40,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>A</b>LT</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b> <?php echo $this->session->userdata('username'); ?></b></span>
+                    <span class="logo-lg"><b> REMAS HD</b></span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top" role="navigation">
@@ -60,19 +60,19 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="<?php echo base_url()?>template/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">Alexander Pierce</span>
+                                    <span class="hidden-xs"><?php echo ucwords(strtolower($this->session->userdata('nama'))); ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
                                         <img src="<?php echo base_url()?>template/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                         <p>
-                                            Alexander Pierce - Web Developer
-                                            <small>Member since Nov. 2012</small>
+                                            <?php echo ucwords(strtolower($this->session->userdata('nama'))); ?>
+                                          <!--  <small>Member since Nov. 2012</small>-->
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
-                                    <li class="user-body">
+                                    <!-- <li class="user-body">
                                         <div class="col-xs-4 text-center">
                                             <a href="#">Followers</a>
                                         </div>
@@ -82,15 +82,15 @@
                                         <div class="col-xs-4 text-center">
                                             <a href="#">Friends</a>
                                         </div>
-                                    </li>
+                                    </li> -->
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                            <a href="#" class="btn btn-default btn-flat">Profil</a>
                                         </div>
                                         <div class="pull-right">
                                             <?php
-                                            echo anchor('auth/logout','Sing out',array('class'=>'btn btn-default btn-flat'));
+                                            echo anchor('menu_login/logout','Wangsul',array('class'=>'btn btn-default btn-flat'));
                                             ?>
                                             
                                         </div>
@@ -115,7 +115,7 @@
                             <img src="<?php echo base_url()?>template/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>Alexander Pierce</p>
+                            <p><?php echo ucwords(strtolower($this->session->userdata('nama'))); ?></p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
@@ -213,7 +213,7 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Data Tables
+                     <!--    Data Tables -->
                     </h1>
                 </section>
 
@@ -227,9 +227,9 @@
             </div><!-- /.content-wrapper -->
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
-                    <b>Version</b> 2.3.0
+                    <b>Version</b> 1.0.0
                 </div>
-                <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2016 <a href="https://www.facebook.com/groups/150636384980548/">Komunitas REMAS HD</a>. Insya Alloh Berkah</strong>.
             </footer>
 
             <!-- Add the sidebar's background. This div must be placed

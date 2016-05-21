@@ -31,6 +31,7 @@ class Menu_login extends CI_Controller
 			$sess_data['uid'] = 0;
 			$sess_data['username'] = 'Super Admin';
 			$sess_data['level'] = 'Super Admin';
+			$sess_data['nama'] = 'Super Admin';
 			$this->session->set_userdata($sess_data);
 			echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.base_url().'">';
 		}else{
@@ -45,6 +46,7 @@ class Menu_login extends CI_Controller
 					$sess_data['uid'] = $sess->id;
 					$sess_data['username'] = $sess->username;
 					$sess_data['level'] = $sess->level;
+					$sess_data['nama'] = $sess->first_name;
 					$this->session->set_userdata($sess_data);
 				
 				echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.base_url().'">';	

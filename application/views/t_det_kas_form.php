@@ -5,7 +5,7 @@
               <div class='box'>
                 <div class='box-header'>
                 
-                  <h3 class='box-title'>Detail KAS</h3>
+                  <h3 class='box-title'>Form Keuangan</h3>
 				  <?php 
 				/* 	$hasil = 0 + (0-50000);
 					echo $hasil; */

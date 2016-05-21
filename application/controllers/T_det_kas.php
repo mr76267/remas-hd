@@ -18,9 +18,10 @@ class T_det_kas extends CI_Controller
     public function index()
     {
         $t_det_kas = $this->T_det_kas_model->get_all();
-
+		$saldo_akhir = $this->T_det_kas_model->get_last_id();
         $data = array(
-            't_det_kas_data' => $t_det_kas
+            't_det_kas_data' => $t_det_kas,
+			'saldo_akhir' => $saldo_akhir
         );
 
         $this->template->load('template','t_det_kas_list', $data);
@@ -32,6 +33,7 @@ class T_det_kas extends CI_Controller
         if ($row) {
             $data = array(
 		'id_kas' => $row->id_kas,
+		'no_kwitansi' => $row->no_kwitansi,
 		'nama_kegiatan' => $row->nama_kegiatan,
 		'pengeluaran' => $row->pengeluaran,
 		'pemasukan' => $row->pemasukan,
