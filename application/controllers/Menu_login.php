@@ -35,8 +35,8 @@ class Menu_login extends CI_Controller
 			$this->session->set_userdata($sess_data);
 			echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.base_url().'">';
 		}else{
-			$this->load->model('model_user'); // load model_user
-			$hasil = $this->model_user->cek_user($data);
+		//	$this->load->model('model_user'); // load model_user
+			$hasil = $this->M_menu_login->cek_user($data);
 			if ($hasil->num_rows() == 1) {
 				$sess = $hasil->row();
 				if($sess->active <> 1){
@@ -82,8 +82,8 @@ class Menu_login extends CI_Controller
 		'email'=>$email,
 		'phone'=>$nomor_hp
 		);
-		$this->load->model('model_user'); // load model_user
-		$result = $this->model_user->register($data);
+		//$this->load->model('model_user'); // load model_user
+		$result = $this->M_menu_login->register($data);
 		if($result == 1){
 			echo "<script>alert('Pendaftaran Berhasil Silahkan Konfirmasi Admin Untuk Aktifasi User');</script>";
 			echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.base_url().'index.php/menu_login">';

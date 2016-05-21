@@ -5,72 +5,65 @@ if (!defined('BASEPATH'))
 
 class M_menu_login extends CI_Model
 {
+public function cek_user($formValues) {
+			extract($formValues);
+			$sql = "SELECT 
+					users.id,
+					username,
+					password,
+					first_name,
+					email,
+					active,
+					groups.name as level
+				from users
+				inner JOIN users_groups on (users.id = user_id)
+				inner JOIN groups on (groups.id = group_id)
+				Where username = '".$username."' and password = '".$password."'";
+			$query = $this->db->query($sql);
+			return $query;
+		}
+		function register($formValues){
+			extract($formValues);
+			$sql = "Select * from users where username = '".$username."'";
+			$query = $this->db->query($sql);
+			if($query->num_rows()>0){
+				return '2';
+			}else{
+				$data = array(
+			"username"=>$username,
+			"password"=>$password,
+			"first_name"=>$first_name,
+			'email'=>$email,
+			'phone'=>$phone,
+			'created_on'=>date("Y-m-d H:i:s"),
+			'active'=>1
+			);
+			$this->db->insert('users',$data);
+			if($this->db->affected_rows()){
+				$id = $this->db->select_max('id')
+                            ->get('users')->row()->id;
+				$this->user_groups($id);
+				return '1';
+			}else{
+				return '0';
+			}
+			}
+			
+		}
+		
+		function user_groups($master_id){
+			$sql = "Select * from groups where name = 'members'";
+			$query = $this->db->query($sql);
+			$row = $query->row();
+			
+			$data = array (
+			'user_id'=>$master_id,
+			'group_id'=>$row->id
+			);
+			$this->db->insert('users_groups',$data);
+		}
 
-    public $table = 'login_attempts';
-    public $id = 'id';
-    public $order = 'DESC';
-
-    function __construct()
-    {
-        parent::__construct();
-    }
-
-    // get all
-    function get_all()
-    {
-        $this->db->order_by($this->id, $this->order);
-        return $this->db->get($this->table)->result();
-    }
-
-    // get data by id
-    function get_by_id($id)
-    {
-        $this->db->where($this->id, $id);
-        return $this->db->get($this->table)->row();
-    }
-    
-    // get total rows
-    function total_rows($q = NULL) {
-        $this->db->like('id', $q);
-	$this->db->or_like('ip_address', $q);
-	$this->db->or_like('login', $q);
-	$this->db->or_like('time', $q);
-	$this->db->from($this->table);
-        return $this->db->count_all_results();
-    }
-
-    // get data with limit and search
-    function get_limit_data($limit, $start = 0, $q = NULL) {
-        $this->db->order_by($this->id, $this->order);
-        $this->db->like('id', $q);
-	$this->db->or_like('ip_address', $q);
-	$this->db->or_like('login', $q);
-	$this->db->or_like('time', $q);
-	$this->db->limit($limit, $start);
-        return $this->db->get($this->table)->result();
-    }
-
-    // insert data
-    function insert($data)
-    {
-        $this->db->insert($this->table, $data);
-    }
-
-    // update data
-    function update($id, $data)
-    {
-        $this->db->where($this->id, $id);
-        $this->db->update($this->table, $data);
-    }
-
-    // delete data
-    function delete($id)
-    {
-        $this->db->where($this->id, $id);
-        $this->db->delete($this->table);
-    }
-
-}
+	}
 
 /* End of file M_menu_login.php */
 /* Location: ./application/models/M_menu_login.php */
